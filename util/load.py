@@ -1,12 +1,6 @@
 import numpy as np
 import os
-import yaml
-
-def load_config():
-    with open('config.yaml', 'r') as configfile:
-        config = yaml.load(configfile)
-    print("loaded config")
-    return config
+from util.config import load_config 
 
 def one_hot(x,n):
     if type(x) == list:
@@ -17,8 +11,8 @@ def one_hot(x,n):
     return o_h
 
 def mnist(ntrain=60000, ntest=10000, onehot=True):
-    data_dir = config['datafiles']['directory']
-    #data_dir = os.path.join(datasets_dir,'mnist/')
+    datasets_dir = load_config()['datafiles']['directory']
+    data_dir = os.path.join(datasets_dir,'mnist/')
     fd = open(os.path.join(data_dir,'train-images-idx3-ubyte'))
     loaded = np.fromfile(file=fd,dtype=np.uint8)
     trX = loaded[16:].reshape((60000,28*28)).astype(float)
