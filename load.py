@@ -2,8 +2,6 @@ import numpy as np
 import os
 import yaml
 
-datasets_dir = '/media/datasets/'
-
 def load_config():
     with open('config.yaml', 'r') as configfile:
         config = yaml.load(configfile)
